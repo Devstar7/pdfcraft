@@ -20,22 +20,20 @@ fn harness(setup: impl FnOnce(&mut PdfCraftApp) + 'static) -> Harness<'static, P
 #[test]
 fn discord_button_in_the_top_bar_opens_discord() {
     let mut h = harness(|_| {});
-    h.get_by_label("Discord").click();
+    h.get_by_label("STAR7").click();
     h.run_steps(2);
     assert_eq!(h.state().last_opened_url.as_deref(), Some(links::DISCORD));
-    assert_eq!(links::DISCORD, "https://discord.gg/artcraft");
+    assert_eq!(links::DISCORD, "https://suite.star-7.app.br");
 }
 
 #[test]
 fn home_screen_links() {
     for (label, url) in [
-        ("Join our Discord", links::DISCORD),
-        ("PdfCraft web page", "https://getartcraft.com/apps/pdfcraft"),
-        ("PdfCraft on GitHub", "https://github.com/storytold/pdfcraft"),
-        ("ArtCraft website", "https://getartcraft.com"),
+        ("STAR7 Suite portal", links::DISCORD),
+        ("STAR PDF on GitHub", "https://github.com/Devstar7/pdfcraft"),
     ] {
         let mut h = harness(|_| {});
-        h.get_by_label("Join the ArtCraft community");
+        h.get_by_label("STAR7 Suite");
         h.get_by_label(label).click();
         h.run_steps(2);
         assert_eq!(h.state().last_opened_url.as_deref(), Some(url), "{label}");
@@ -45,11 +43,11 @@ fn home_screen_links() {
 #[test]
 fn home_community_card_closes_for_this_run() {
     let mut h = harness(|_| {});
-    h.get_by_label("Join the ArtCraft community");
+    h.get_by_label("STAR7 Suite");
     h.get_by_label("Close").click();
     h.run_steps(2);
     assert!(h.state().community_card_closed);
-    assert!(h.query_by_label("Join the ArtCraft community").is_none());
+    assert!(h.query_by_label("STAR7 Suite").is_none());
     assert!(h.query_by_label("Join our Discord").is_none());
     // Not remembered: a fresh app shows the card again.
     assert!(!PdfCraftApp::new().community_card_closed);

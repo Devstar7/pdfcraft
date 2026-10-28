@@ -3,23 +3,23 @@
   <?ifndef HasCraftFontLicences ?>
   <?define HasCraftFontLicences=0 ?>
   <?endif?>
-  <Package Name="PdfCraft" Manufacturer="Learning Machines LLC" Version="$(var.Version)" UpgradeCode="EA00C367-7270-4C50-9D8B-A7A5C88AD27F" Scope="perUserOrMachine" Compressed="yes" Language="1033">
-    <SummaryInformation Description="PdfCraft PDF workbench" Manufacturer="Learning Machines LLC" />
+  <Package Name="STAR PDF" Manufacturer="STAR7" Version="$(var.Version)" UpgradeCode="EA00C367-7270-4C50-9D8B-A7A5C88AD27F" Scope="perUserOrMachine" Compressed="yes" Language="1033">
+    <SummaryInformation Description="STAR PDF" Manufacturer="STAR7" />
     <?include $(sys.SOURCEFILEDIR)install-policy.wxi?>
     <!-- HKLM registrations must never point into a per-user installation (#305). Allow removal
          of an existing installation even if an older MSI let it install per-user. -->
     <!-- Same-version upgrades let successive pre-releases of one X.Y.Z replace each other
          (MSI versions are numeric, so 1.2.3-rc.1 and 1.2.3-rc.2 are both 1.2.3). -->
-    <MajorUpgrade AllowSameVersionUpgrades="yes" DowngradeErrorMessage="A newer version of PdfCraft is already installed." />
+    <MajorUpgrade AllowSameVersionUpgrades="yes" DowngradeErrorMessage="A newer version of STAR PDF is already installed." />
     <MediaTemplate EmbedCab="yes" CompressionLevel="high" />
 
     <!-- Windows Installer requires an Icon id ending in .ico or .exe, or advertised shortcuts and
          Add/Remove Programs show a blank icon (#57). -->
     <Icon Id="PdfcraftIcon.ico" SourceFile="$(var.IconPath)" />
     <Property Id="ARPPRODUCTICON" Value="PdfcraftIcon.ico" />
-    <Property Id="ARPURLINFOABOUT" Value="https://getartcraft.com/apps/pdfcraft" />
-    <Property Id="ARPURLUPDATEINFO" Value="https://getartcraft.com/apps/pdfcraft" />
-    <Property Id="ARPHELPLINK" Value="https://discord.gg/artcraft" />
+    <Property Id="ARPURLINFOABOUT" Value="https://suite.star-7.app.br" />
+    <Property Id="ARPURLUPDATEINFO" Value="https://suite.star-7.app.br" />
+    <Property Id="ARPHELPLINK" Value="https://suite.star-7.app.br" />
     <!-- Desktop shortcut (#143): on by default for a first install, a checkbox in the full-UI
          welcome dialog, and INSTALLDESKTOPSHORTCUT=0 on the msiexec command line for unattended
          installs. Secure, so the choice made in the (unelevated) UI reaches the elevated install.
@@ -31,12 +31,12 @@
          names the user's desktop then. Search both desktops and keep the one for the chosen scope. -->
     <Property Id="EXISTINGDESKTOPSHORTCUT_USER">
       <DirectorySearch Id="DesktopSearchUser" Path="[DesktopFolder]" Depth="0">
-        <FileSearch Name="PdfCraft.lnk" />
+        <FileSearch Name="STAR PDF.lnk" />
       </DirectorySearch>
     </Property>
     <Property Id="EXISTINGDESKTOPSHORTCUT_MACHINE">
       <DirectorySearch Id="DesktopSearchMachine" Path="[%PUBLIC]\Desktop" Depth="0">
-        <FileSearch Name="PdfCraft.lnk" />
+        <FileSearch Name="STAR PDF.lnk" />
       </DirectorySearch>
     </Property>
     <SetProperty Id="EXISTINGDESKTOPSHORTCUT" Action="CraftExistingMachineShortcut" Value="[EXISTINGDESKTOPSHORTCUT_MACHINE]" After="CraftLoadOption2U" Sequence="first" Condition="ALLUSERS = 1 AND EXISTINGDESKTOPSHORTCUT_MACHINE" />
@@ -67,7 +67,7 @@
 
     <StandardDirectory Id="ProgramFiles6432Folder">
       <Directory Id="CraftSuiteFolder" Name="ArtCraft">
-        <Directory Id="INSTALLFOLDER" Name="PdfCraft">
+        <Directory Id="INSTALLFOLDER" Name="STAR PDF">
         <Directory Id="ModelsFolder" Name="models" />
       </Directory>
       </Directory>
@@ -116,7 +116,7 @@
              thumbnail, covering part of the page. An empty string means none ("Thumbnail
              Handlers", Microsoft Learn). -->
         <RegistryValue Root="HKMU" Key="Software\Classes\PdfCraft.Document" Name="TypeOverlay" Value="" Type="string" />
-        <RegistryValue Root="HKMU" Key="Software\Classes\.pdf\OpenWithProgids" Name="PdfCraft.Document" Value="" Type="string" />
+        <RegistryValue Root="HKMU" Key="Software\Classes\.pdf\OpenWithProgids" Name="STAR PDF.Document" Value="" Type="string" />
         <RegistryValue Root="HKMU" Key="Software\Classes\Applications\pdfcraft.exe" Name="FriendlyAppName" Value="PdfCraft" Type="string" />
         <RegistryValue Root="HKMU" Key="Software\Classes\Applications\pdfcraft.exe\DefaultIcon" Value="&quot;[#PdfcraftExe]&quot;,-2" Type="string" />
         <RegistryValue Root="HKMU" Key="Software\Classes\Applications\pdfcraft.exe\SupportedTypes" Name=".pdf" Value="" Type="string" />
@@ -125,7 +125,7 @@
         <RegistryValue Root="HKMU" Key="Software\PdfCraft\Capabilities" Name="ApplicationDescription" Value="Open-source PDF workbench" Type="string" />
         <RegistryValue Root="HKMU" Key="Software\PdfCraft\Capabilities" Name="ApplicationIcon" Value="[#PdfcraftExe],0" Type="string" />
         <RegistryValue Root="HKMU" Key="Software\PdfCraft\Capabilities\FileAssociations" Name=".pdf" Value="PdfCraft.Document" Type="string" />
-        <RegistryValue Root="HKMU" Key="Software\RegisteredApplications" Name="PdfCraft" Value="Software\PdfCraft\Capabilities" Type="string" />
+        <RegistryValue Root="HKMU" Key="Software\RegisteredApplications" Name="STAR PDF" Value="Software\PdfCraft\Capabilities" Type="string" />
       <RegistryValue Root="HKMU" Key="Software\PdfCraft" Name="InstallDir" Value="[INSTALLFOLDER]" Type="string" />
       </Component>
 
@@ -135,12 +135,12 @@
            (#143). Each has its own component with an HKLM key path, so Windows Installer removes it
            on uninstall; in this per-machine package both folders are the all-users ones. -->
       <Component Id="PdfcraftStartMenuShortcut" Directory="ProgramMenuFolder" Guid="DC028192-C233-4F99-9A77-ED458C60DF26">
-        <Shortcut Id="StartMenuShortcut" Name="PdfCraft" Description="PdfCraft PDF workbench" Target="[#PdfcraftExe]" WorkingDirectory="INSTALLFOLDER" Icon="PdfcraftIcon.ico" IconIndex="0" />
+        <Shortcut Id="StartMenuShortcut" Name="STAR PDF" Description="STAR PDF" Target="[#PdfcraftExe]" WorkingDirectory="INSTALLFOLDER" Icon="PdfcraftIcon.ico" IconIndex="0" />
         <RegistryValue Root="HKMU" Key="Software\PdfCraft\Shortcuts" Name="StartMenu" Type="integer" Value="1" KeyPath="yes" />
       </Component>
 
       <Component Id="PdfcraftDesktopShortcut" Directory="DesktopFolder" Guid="F6948627-32AB-4D78-8865-0FDF417CE442" Condition="INSTALLDESKTOPSHORTCUT = 1">
-        <Shortcut Id="DesktopShortcut" Name="PdfCraft" Description="PdfCraft PDF workbench" Target="[#PdfcraftExe]" WorkingDirectory="INSTALLFOLDER" Icon="PdfcraftIcon.ico" IconIndex="0" />
+        <Shortcut Id="DesktopShortcut" Name="STAR PDF" Description="STAR PDF" Target="[#PdfcraftExe]" WorkingDirectory="INSTALLFOLDER" Icon="PdfcraftIcon.ico" IconIndex="0" />
         <RegistryValue Root="HKMU" Key="Software\PdfCraft\Shortcuts" Name="Desktop" Type="integer" Value="1" KeyPath="yes" />
       </Component>
 

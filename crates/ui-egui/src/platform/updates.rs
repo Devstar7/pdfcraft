@@ -70,14 +70,9 @@ impl PdfCraftApp {
     pub(crate) fn poll_updates(&mut self) {
         #[cfg(not(target_arch = "wasm32"))]
         {
-            let Some(ctx) = self.ctx.clone() else { return };
-            let updates = &mut self.updates;
-            if std::mem::take(&mut updates.check_requested) {
-                updates.updater.check_now(&ctx);
-            } else if updates.startup_check {
-                updates.updater.check_at_start(&ctx);
-            }
-            updates.updater.tick(&ctx);
+            // STAR7: updates come only from the STAR7 Suite portal; the upstream feed is never contacted.
+            self.updates.check_requested = false;
+            self.updates.startup_check = false;
         }
     }
 }
@@ -128,7 +123,7 @@ pub(crate) fn dialog(app: &mut PdfCraftApp, ctx: &egui::Context) {
                 });
             }
             Status::UpToDate => {
-                ui.label(crate::i18n::fmt(tl!("PdfCraft {c} is up to date."), &[("c", current)]));
+                ui.label(crate::i18n::fmt(tl!("STAR PDF {c} is up to date."), &[("c", current)]));
             }
             Status::Failed(e) => {
                 ui.label(crate::i18n::fmt(tl!("Couldn't check for updates: {e}"), &[("e", e)]));
