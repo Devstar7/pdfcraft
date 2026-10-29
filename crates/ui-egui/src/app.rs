@@ -539,7 +539,7 @@ impl eframe::App for PdfCraftApp {
             .active
             .and_then(|i| crate::canvas::tab_label(self, i))
             .or_else(|| self.combine_showing().then(|| tl!("Combine files").to_owned()))
-            .map_or_else(|| "PdfCraft".to_owned(), |name| format!("{name} — PdfCraft"));
+            .map_or_else(|| window_title(None), |name| window_title(Some(&name)));
         if title != self.window_title {
             ctx.send_viewport_cmd(egui::ViewportCommand::Title(title.clone()));
             self.window_title = title;
@@ -606,5 +606,29 @@ impl eframe::App for PdfCraftApp {
             control.finish_frame(&ctx, self);
             self.control = Some(control);
         }
+    }
+}
+
+/// Visible product name shown in the window title bar. Internal identifiers (storage folders,
+/// ProgIDs) keep the upstream name so existing settings and file associations keep working.
+pub const DISPLAY_NAME: &str = "STAR PDF";
+
+/// The window title: "<document> — STAR PDF", or just "STAR PDF" with nothing open.
+pub fn window_title(document: Option<&str>) -> String {
+    match document {
+        Some(name) => format!("{name} — {DISPLAY_NAME}"),
+        None => DISPLAY_NAME.to_owned(),
+    }
+}
+
+#[cfg(test)]
+mod window_title_tests {
+    use super::window_title;
+
+    #[test]
+    fn title_uses_star_pdf_brand() {
+        assert_eq!(window_title(Some("ASO.pdf")), "ASO.pdf — STAR PDF");
+        assert_eq!(window_title(None), "STAR PDF");
+        assert!(!window_title(Some("a.pdf")).contains("PdfCraft"));
     }
 }
