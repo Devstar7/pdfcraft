@@ -154,7 +154,7 @@ pub const WORDINGS: &[&str] = &[
     "The signature's byte range does not exclude exactly its contents.",
     "The signature contents are not hexadecimal.",
     "The signature could not be read ({}).",
-    "PdfCraft can't check this signature yet: {}.",
+    "STAR PDF can't check this signature yet: {}.",
     "The signature uses the legacy adbe.x509.rsa_sha1 format.",
     // What was read leniently on the way, each sentence worded where the reading happens.
     "The signature is BER-encoded (indefinite lengths) rather than DER; it was read leniently.",

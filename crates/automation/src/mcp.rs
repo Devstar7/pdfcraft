@@ -30,7 +30,7 @@ const INTERNAL_ERROR: i64 = -32603;
 /// Longest JSON-RPC request line [`McpServer::serve`] buffers into memory (16 MiB).
 pub const MAX_LINE_BYTES: usize = 16 * 1024 * 1024;
 
-const INSTRUCTIONS: &str = "PdfCraft edits PDFs. Open a file with doc_open to get a document id, then inspect \
+const INSTRUCTIONS: &str = "STAR PDF edits PDFs. Open a file with doc_open to get a document id, then inspect \
 (doc_info, text_extract, text_find, page_render) or edit it (page_*, doc_set_info). Edits are undoable \
 (edit_undo) and stay in memory until doc_save. Page numbers are 1-based. Open documents are also \
 resources: pdfcraft://doc/{doc}/info, /text, /page/{page}/text and /page/{page}/image. \
@@ -153,7 +153,7 @@ impl McpServer {
                 Ok(json!({
                     "protocolVersion": version,
                     "capabilities": { "tools": { "listChanged": false }, "resources": { "listChanged": false, "subscribe": false } },
-                    "serverInfo": { "name": "pdfcraft", "title": "PdfCraft", "version": env!("CARGO_PKG_VERSION"), "websiteUrl": pdfcraft_engine::links::APP_PAGE },
+                    "serverInfo": { "name": "pdfcraft", "title": "STAR PDF", "version": env!("CARGO_PKG_VERSION"), "websiteUrl": pdfcraft_engine::links::APP_PAGE },
                     "instructions": if self.compact { format!("{INSTRUCTIONS}{COMPACT_INSTRUCTIONS}") } else { INSTRUCTIONS.to_string() },
                 }))
             }
