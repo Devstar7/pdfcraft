@@ -66,10 +66,8 @@
     <UIRef Id="PdfcraftInstallerUI" />
 
     <StandardDirectory Id="ProgramFiles6432Folder">
-      <Directory Id="CraftSuiteFolder" Name="ArtCraft">
-        <Directory Id="INSTALLFOLDER" Name="STAR PDF">
+      <Directory Id="INSTALLFOLDER" Name="STAR PDF">
         <Directory Id="ModelsFolder" Name="models" />
-      </Directory>
       </Directory>
     </StandardDirectory>
     <StandardDirectory Id="ProgramMenuFolder" />
