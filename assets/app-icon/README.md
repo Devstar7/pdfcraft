@@ -33,7 +33,7 @@ Licence: [LICENSE.txt](LICENSE.txt) (`MIT OR Apache-2.0`, like the repo).
 | `pdfcraft-1024.png` | 1024 px on Apple's grid; also the runtime Dock icon on macOS |
 | `pdfcraft.icns` | macOS icon (16–1024 px) |
 | `pdfcraft.ico` | Windows icon (16–256 px), embedded in `pdfcraft.exe` by `apps/pdfcraft/build.rs` |
-| `pdfcraft-document.svg` | Windows PDF file icon master: a Lucide document outline, green badge and outlined PDF lettering; no font dependency |
+| `pdfcraft-document.svg` | Windows PDF file icon master: a Lucide document outline, coral badge and outlined PDF lettering; no font dependency |
 | `pdfcraft-document.ico` | Windows PDF file icon (16–256 px), embedded as resource 2 in `pdfcraft.exe` |
 | `hicolor/<n>x<n>/apps/ai.storyteller.pdfcraft.png` | Linux hicolor theme, 16–512 px; the 256 px one is the runtime icon on Windows and Linux |
 | `hicolor/scalable/apps/ai.storyteller.pdfcraft.svg` | Linux scalable icon (copy of the master) |
@@ -54,3 +54,5 @@ sidecar. This provides a file type icon; first-page thumbnails still need a thum
 packaging/icons.sh        # needs resvg and python3; iconutil (macOS) for the .icns
 cargo xtask assets        # then update the sha256 values in ATTRIBUTION.toml and run with --write
 ```
+
+STAR PDF Windows document icon: original Lucide/PdfCraft composition with a STAR7 coral palette, not Adobe artwork. Resource ID 2 and the existing ProgID are preserved.

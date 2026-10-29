@@ -75,7 +75,7 @@
     <StandardDirectory Id="ProgramMenuFolder" />
     <StandardDirectory Id="DesktopFolder" />
 
-    <Feature Id="Main" Title="PdfCraft" Level="1">
+    <Feature Id="Main" Title="STAR PDF" Level="1">
       <?if $(var.HasCraftFontLicences) = 1 ?>
       <ComponentGroupRef Id="CraftFontLicences" />
       <?endif?>
@@ -117,11 +117,11 @@
              Handlers", Microsoft Learn). -->
         <RegistryValue Root="HKMU" Key="Software\Classes\PdfCraft.Document" Name="TypeOverlay" Value="" Type="string" />
         <RegistryValue Root="HKMU" Key="Software\Classes\.pdf\OpenWithProgids" Name="PdfCraft.Document" Value="" Type="string" />
-        <RegistryValue Root="HKMU" Key="Software\Classes\Applications\pdfcraft.exe" Name="FriendlyAppName" Value="PdfCraft" Type="string" />
+        <RegistryValue Root="HKMU" Key="Software\Classes\Applications\pdfcraft.exe" Name="FriendlyAppName" Value="STAR PDF" Type="string" />
         <RegistryValue Root="HKMU" Key="Software\Classes\Applications\pdfcraft.exe\DefaultIcon" Value="&quot;[#PdfcraftExe]&quot;,-2" Type="string" />
         <RegistryValue Root="HKMU" Key="Software\Classes\Applications\pdfcraft.exe\SupportedTypes" Name=".pdf" Value="" Type="string" />
         <RegistryValue Root="HKMU" Key="Software\Classes\Applications\pdfcraft.exe\shell\open\command" Value="&quot;[#PdfcraftExe]&quot; &quot;%1&quot;" Type="string" />
-        <RegistryValue Root="HKMU" Key="Software\PdfCraft\Capabilities" Name="ApplicationName" Value="PdfCraft" Type="string" />
+        <RegistryValue Root="HKMU" Key="Software\PdfCraft\Capabilities" Name="ApplicationName" Value="STAR PDF" Type="string" />
         <RegistryValue Root="HKMU" Key="Software\PdfCraft\Capabilities" Name="ApplicationDescription" Value="Open-source PDF workbench" Type="string" />
         <RegistryValue Root="HKMU" Key="Software\PdfCraft\Capabilities" Name="ApplicationIcon" Value="[#PdfcraftExe],0" Type="string" />
         <RegistryValue Root="HKMU" Key="Software\PdfCraft\Capabilities\FileAssociations" Name=".pdf" Value="PdfCraft.Document" Type="string" />
